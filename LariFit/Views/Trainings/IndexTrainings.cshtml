@@ -1,0 +1,43 @@
+﻿@model IEnumerable<LariFit.Models.Trainings.Training>
+
+<form asp-controller="Trainings" asp-action="CreateTraining" method="post">
+
+    <label>Дата:</label><br/>
+    <input type="date" name="date"/><br/>
+    <button type="submit" class="btn btn-sm btn-success">
+        Добавить тренировку
+    </button>
+
+</form>
+
+<table class="table">
+
+    <tr>
+        <th>ID</th>
+        <th>Дата</th>
+        <th></th>
+        <th></th>
+    </tr>
+
+    @foreach (var training in Model)
+    {
+        <tr>
+            <td>@training.Id</td>
+            <td>@DateOnly.FromDateTime(training.Date)</td>
+            <td>
+                <form asp-action="DeleteTraining" asp-route-id="@training.Id" method="post">
+                    <button type="submit" class="btn btn-sm btn-danger">
+                        Удалить
+                    </button>
+                </form>
+            </td>
+            <td>
+                <form asp-action="EditTraining" asp-route-id="@training.Id" method="post">
+                    <button type="submit" class="btn btn-sm btn-info">
+                        Изменить
+                    </button>
+                </form>
+            </td>
+        </tr>
+    }
+</table>

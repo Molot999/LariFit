@@ -1,0 +1,71 @@
+﻿@model IEnumerable<LariFit.Models.Measurement>
+@{
+    ViewBag.Title = "Мои замеры";
+
+    Measurement? lastMeasurementWhereSetWeight = Model.LastOrDefault(m => m.Weight != null);
+    float? targetWeight = ViewBag.TargetWeight;
+
+    int progressPercent = 0;
+    int normalizedProgressPercent = 0;
+
+    if (lastMeasurementWhereSetWeight != null && targetWeight!= null)
+    {
+        float? firstMeasuredtWeight = Model.First(m => m.Weight != null).Weight.Value;
+
+        float weightToLose = firstMeasuredtWeight.Value - targetWeight.Value;
+
+        progressPercent = (int)((100 * (firstMeasuredtWeight - lastMeasurementWhereSetWeight.Weight.Value)) / weightToLose);
+
+        normalizedProgressPercent = progressPercent > 100 ? 100 : progressPercent;
+    }
+}
+
+<div class="progress">
+  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="@normalizedProgressPercent" style="width: @normalizedProgressPercent%">
+      @progressPercent%
+  </div>
+</div>
+
+<form asp-controller="Measurements" asp-action="Create" method="get">
+    <button type="submit" class="btn btn-sm btn-success">
+        Добавить
+    </button>
+</form>
+
+<table class="table">
+    <tr>
+        <th>Дата</th>
+        <th>Вес</th>
+        <th>Шея</th>
+        <th>Грудь</th>
+        <th>Бицепс</th>
+        <th>Талия</th>
+        <th>Бедра</th>
+        <th>Бедро</th>
+        <th>Голень</th>
+        <th></th>
+    </tr>
+
+    @foreach (var measurement in Model.Reverse())
+    {
+        <tr>
+            <td>@DateOnly.FromDateTime(measurement.Date)</td>
+            <td>@measurement.Weight</td>
+            <td>@measurement.Neck</td>
+            <td>@measurement.Chest</td>
+            <td>@measurement.Biceps</td>
+            <td>@measurement.Waist</td>
+            <td>@measurement.Hips</td>
+            <td>@measurement.Thigh</td>
+            <td>@measurement.Shin</td>
+            <td>
+                <form asp-action="Delete" asp-route-id="@measurement.Id" method="post">
+                    <button type="submit" class="btn btn-sm btn-danger">
+                        Удалить
+                    </button>
+                </form>
+            </td>
+        </tr>
+    }
+
+</table>

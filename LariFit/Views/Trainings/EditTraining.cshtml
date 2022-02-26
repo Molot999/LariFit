@@ -1,0 +1,52 @@
+﻿@model LariFit.ViewModels.Trainings.EditTrainingViewModel
+@{
+    ViewBag.Title = "Изменение тренировки";
+}
+<form asp-controller="Trainings" asp-action="EditTraining"  method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="Date" class="control-label">Дата</label>
+        <input asp-for="Date" class="form-control"/>
+    </div>
+        <div class="form-group">
+        <input type="hidden" asp-for="Id" />
+    </div>
+</form>
+
+<form asp-controller="Trainings" asp-action="AddExercise" method="get">
+    <button type="submit" class="btn btn-sm btn-success">
+        Добавить упражнение
+    </button>
+</form>
+
+
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th></th>
+        <th></th>
+    </tr>
+
+        @foreach (var exercise in Model.Exercises)
+        {
+        <tr>
+            <td>@exercise.Id</td>
+            <td>
+                <form asp-action="Delete" asp-route-id="@exercise.Id" method="post">
+                    <button type="submit" class="btn btn-sm btn-danger">
+                        Удалить
+                    </button>
+                </form>
+            </td>
+            <td>
+                <form asp-action="ExerciceSets" asp-route-id="@exercise.Id" method="post">
+                    <button type="submit" class="btn btn-sm btn-danger">
+                        Подходы
+                    </button>
+                </form>
+            </td>
+        </tr>
+        }
+
+</table>

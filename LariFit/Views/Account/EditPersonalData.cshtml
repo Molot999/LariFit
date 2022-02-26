@@ -1,0 +1,37 @@
+﻿@model LariFit.ViewModels.Account.EditPersonalDataViewModel
+@{
+    ViewBag.Title = "Изменить личные данные";
+}
+
+<form asp-action="EditPersonalData" asp-controller="Account">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <input type="hidden" asp-for="Id" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="BirthDate" class="control-label">Дата рождения</label>
+        <input asp-for="BirthDate" class="form-control"/>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Height" class="control-label">Рост</label>
+        <input asp-for="Height" class="form-control"/>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="TargetWeight" class="control-label">Целевой вес</label>
+        <input asp-for="TargetWeight" class="form-control"/>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Calories" class="control-label">Калории</label>
+        <input asp-for="Calories" class="form-control"/>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Сохранить" class="btn btn-outline-secondary" />
+    </div>
+
+</form>

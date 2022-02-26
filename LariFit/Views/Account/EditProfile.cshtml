@@ -1,0 +1,33 @@
+﻿@model LariFit.ViewModels.Account.EditProfileViewModel
+@{
+    ViewBag.Title = "Изменить данные профиля";
+}
+
+    <p>Привет, @Model?.UserName</p>
+ 
+    <form method="post" asp-controller="Account" asp-action="Logout">
+        <input type="submit" value="Выход" />
+    </form>
+
+<form asp-action="EditProfile" asp-controller="Account">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    
+    <div class="form-group">
+        <input type="hidden" asp-for="Id" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="UserName" class="control-label">UserName</label>
+        <input asp-for="UserName" class="form-control"/>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Password" class="control-label">Password</label>
+        <input asp-for="Password" class="form-control"/>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Сохранить" class="btn btn-outline-secondary" />
+    </div>
+
+</form>

@@ -1,0 +1,58 @@
+﻿@model LariFit.ViewModels.Measurements.CreateMeasurementViewModel
+@{
+    ViewBag.Title = "Добавление замера";
+}
+<form asp-action="Create" asp-controller="Measurements" method="post">
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="MeasurementDate" class="control-label">Дата</label>
+        <input asp-for="MeasurementDate" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Weight" class="control-label">Вес</label>
+        <input asp-for="Weight" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Neck" class="control-label">Шея</label>
+        <input asp-for="Neck" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Chest" class="control-label">Грудь</label>
+        <input asp-for="Chest" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Biceps" class="control-label">Бицепс</label>
+        <input asp-for="Biceps" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Waist" class="control-label">Талия</label>
+        <input asp-for="Waist" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Hips" class="control-label">Бедра</label>
+        <input asp-for="Hips" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Thigh" class="control-label">Бедро</label>
+        <input asp-for="Thigh" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Shin" class="control-label">Голень</label>
+        <input asp-for="Shin" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Добавить" class="btn btn-outline-secondary" />
+    </div>
+
+</form>
