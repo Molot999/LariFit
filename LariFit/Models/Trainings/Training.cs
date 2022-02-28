@@ -11,13 +11,13 @@ namespace LariFit.Models.Trainings
             User = user;
             Date = date;
         }
-        public Training(User? user, List<Exercise> exercises)
+        public Training(User? user, List<PerformingExercise> exercises)
         {
             User = user;
             Exercises = exercises;
         }
 
-        public Training(User? user, List<Exercise> exercises, DateTime date) : this(user, exercises)
+        public Training(User? user, List<PerformingExercise> exercises, DateTime date) : this(user, exercises)
         {
             Date = date;
         }
@@ -28,7 +28,7 @@ namespace LariFit.Models.Trainings
         public string UserId { get; set; }
         public User? User { get; set; }
 
-        public List<Exercise> Exercises { get; set; } = new List<Exercise>();
+        public List<PerformingExercise> Exercises { get; set; } = new List<PerformingExercise>();
 
         public DateTime Date { get; set; }
     }

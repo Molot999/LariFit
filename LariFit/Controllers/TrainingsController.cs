@@ -43,12 +43,13 @@ namespace LariFit.Controllers
             {
                 return NotFound();
             }
-                Training training = new Training(user, date);
+            
+            Training training = new Training(user, date);
 
-                db.Trainings.Add(training);
-                db.SaveChanges();
+            db.Trainings.Add(training);
+            db.SaveChanges();
 
-                return EditTraining(training.Id);
+            return RedirectToAction("IndexTrainings");
 
         }
 
@@ -64,7 +65,9 @@ namespace LariFit.Controllers
                 
             EditTrainingViewModel editTrainingViewModel = new EditTrainingViewModel(training.Id ,training.Date, training.Exercises);
 
-                return View(editTrainingViewModel); 
+            ViewBag.Exercises = db.Exercises.ToList();
+
+            return View(editTrainingViewModel); 
         }
 
         [HttpPost]
@@ -89,7 +92,7 @@ namespace LariFit.Controllers
                 }
             }
 
-            return View();
+            return RedirectToAction("EditTraining");
         }
 
         [HttpPost]
@@ -105,19 +108,23 @@ namespace LariFit.Controllers
             db.Trainings.Remove(training);
             db.SaveChanges();
 
-                return RedirectToAction("IndexTrainings");
+            return RedirectToAction("IndexTrainings");
         }
 
         [HttpGet]
-        public IActionResult AddExercise(CreateExerciseViewModel model)
+        public IActionResult AddPerformingExercise(int exerciseId, int trainingId)
         {
-            return View(model);
+            Exercise exercise = db.Exercises.FirstOrDefault(t => t.Id == exerciseId);
+
+            AddPerformingExerciseViewModel addPerformingExerciseViewModel = new AddPerformingExerciseViewModel(exercise.Title, exercise.CaloriesPerHour, trainingId);
+
+            return View(addPerformingExerciseViewModel);
         }
 
         [HttpPost]
-        public IActionResult AddExercise()
+        public IActionResult AddPerformingExercise(AddPerformingExerciseViewModel model)
         {
-            return View();
+            return RedirectToAction("AddExercise");
         }
     }
 }

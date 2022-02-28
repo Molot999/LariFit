@@ -1,0 +1,21 @@
+﻿@model LariFit.ViewModels.Admin.AddExerciseViewModel
+
+<form asp-action="AddExercise" asp-controller="Admin" method="post">
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="Title" class="control-label">Название</label>
+        <input asp-for="Title" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CaloriesPerHour" class="control-label">Калл/час</label>
+        <input asp-for="CaloriesPerHour" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Добавить" class="btn btn-outline-secondary" />
+    </div>
+
+</form>

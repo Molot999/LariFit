@@ -1,20 +1,37 @@
-﻿@model LariFit.ViewModels.Trainings.EditTrainingViewModel
+﻿@using LariFit.Models.Trainings;
+@model LariFit.ViewModels.Trainings.EditTrainingViewModel
 @{
     ViewBag.Title = "Изменение тренировки";
 }
-<form asp-controller="Trainings" asp-action="EditTraining"  method="post">
+<form asp-controller="Trainings" asp-action="EditTraining" method="post">
+
     <div asp-validation-summary="All" class="text-danger"></div>
+
+     <div class="form-group">
+        <input type="hidden" asp-for="Id" />
+    </div>
 
     <div class="form-group">
         <label asp-for="Date" class="control-label">Дата</label>
-        <input asp-for="Date" class="form-control"/>
+        <input asp-for="Date" type="date" class="form-control" />
     </div>
-        <div class="form-group">
-        <input type="hidden" asp-for="Id" />
-    </div>
+
+    <button type="submit" class="btn btn-sm btn-success">
+        Сохранить
+    </button>
 </form>
 
-<form asp-controller="Trainings" asp-action="AddExercise" method="get">
+<form asp-controller="Trainings" asp-action="AddPerformingExercise" method="get">
+    <div class="form-group">
+        <select name="exerciseId">
+        @foreach(Exercise exercise in ViewBag.Exercises)
+        {
+            <option value="@exercise.Id" >@exercise.Title</option>
+        }
+        </select>
+    </div>
+    <input type="hidden" name="trainingId" value="@Model.Id" />
+
     <button type="submit" class="btn btn-sm btn-success">
         Добавить упражнение
     </button>
@@ -40,7 +57,7 @@
                 </form>
             </td>
             <td>
-                <form asp-action="ExerciceSets" asp-route-id="@exercise.Id" method="post">
+                <form asp-action="ExerciceSets" asp-route-id="@exercise.Id" method="get">
                     <button type="submit" class="btn btn-sm btn-danger">
                         Подходы
                     </button>

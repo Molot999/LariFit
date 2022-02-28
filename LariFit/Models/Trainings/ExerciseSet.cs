@@ -5,21 +5,18 @@ namespace LariFit.Models.Trainings
     public class ExerciseSet
     {
         public ExerciseSet() { }
-        public ExerciseSet(Exercise? exercise, bool isFinished, int setQuantity, int restTimeAfter)
+        public ExerciseSet(PerformingExercise? exercise, int reps)
         {
             Exercise = exercise;
-            IsFinished = isFinished;
-            SetQuantity = setQuantity;
-            RestTimeAfter = restTimeAfter;
+            Reps = Reps;
         }
         public int Id { get; set; }
 
         [ForeignKey(nameof(Exercise))]
         public int ExerciseId { get; set;}
-        public Exercise? Exercise { get; set; }
-        public bool IsFinished { get; set; }
-        public int SetQuantity { get; set; }
-        public int RestTimeAfter { get; set; }
+        public PerformingExercise? Exercise { get; set; }
+        public int? Reps { get; set; }
+        public int? Weight { get; set; }
 
     }
 }

@@ -6,7 +6,7 @@ namespace LariFit.ViewModels.Trainings
     {
         public EditTrainingViewModel(){}
 
-        public EditTrainingViewModel(int id, DateTime date, List<Exercise> exercises)
+        public EditTrainingViewModel(int id, DateTime date, List<PerformingExercise> exercises)
         {
             Id = id;
             Date = date;
@@ -16,6 +16,6 @@ namespace LariFit.ViewModels.Trainings
         public int Id { get; set; }
         public DateTime Date {get; set;}
 
-        public List<Exercise> Exercises { get; set; } = new List<Exercise>();
+        public List<PerformingExercise> Exercises { get; set; } = new List<PerformingExercise>();
     }
 }
