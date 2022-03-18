@@ -136,7 +136,7 @@ namespace LariFit.Controllers
         [HttpPost]
         public IActionResult AddExerciseSet(AddExerciseSetViewModel model)
         {
-
+            return View();
         }
     }
 }
