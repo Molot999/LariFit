@@ -10,8 +10,8 @@ namespace LariFit.Models
         public DbSet<Measurement> Measurements { get; set; } = null!;
         public DbSet<Training> Trainings { get; set; } = null!;
         public DbSet<PerformingExercise> TrainingExercises { get; set; } = null!;
-        public DbSet<ExerciseSet> ExerciseSets { get; set; } = null!;
         public DbSet<Exercise> Exercises { get; set; } = null!;
+        public DbSet<ExerciseSet> ExerciseSets { get; set; } = null!;
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
             : base(options)

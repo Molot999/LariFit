@@ -124,7 +124,19 @@ namespace LariFit.Controllers
         [HttpPost]
         public IActionResult AddPerformingExercise(AddPerformingExerciseViewModel model)
         {
-            return RedirectToAction("AddExercise");
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult AddExerciseSet()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddExerciseSet(AddExerciseSetViewModel model)
+        {
+
         }
     }
 }
